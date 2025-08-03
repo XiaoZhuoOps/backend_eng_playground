@@ -5,7 +5,7 @@ import { Spin, Typography, Card, Button, Row, Col, Alert, Descriptions } from 'a
 const { Title, Paragraph, Text } = Typography;
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: '/api',
 });
 
 const ScenarioViewer = ({ scenarioId }) => {

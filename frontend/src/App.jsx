@@ -8,7 +8,7 @@ const { Title } = Typography;
 
 // Configure axios to proxy requests to the backend container
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8080/api', // Assumes local dev environment
+    baseURL: '/api',
 });
 
 function App() {
