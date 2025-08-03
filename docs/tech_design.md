@@ -216,7 +216,7 @@ The following directory structure is recommended to maintain clarity and modular
 │       └── App.jsx
 ├── docs/
 │   ├── prd.md
-│   └── TECH_SPEC.md
+│   └── tech_design.md
 └── docker-compose.yml        # Docker orchestration file
 ```
 
