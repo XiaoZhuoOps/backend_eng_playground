@@ -1,0 +1,45 @@
+bmq
+- Kafka 存算分离版本 存用HDFS
+- 默认有序 消费失败不可以重发
+- 不支持延迟消息
+- 每个 partition 由多个 segment(物理文件) 组成的逻辑文件
+- 新版本才支持 offset 回拨
+
+rmq
+- 默认存 48h
+- 支持消息重试, 多次重试失败加入死信队列
+- 支持 5s-32d 的延迟消息
+    - 核心是 单独的延迟消息队列 定时任务重新投递
+- 支持消息 offset 回拨
+- 支持顺序和乱序 如果多个 producer 并发写到一个 queue 是没有保障的 实际顺序以broker 收到的顺序为准
+顺序消息必须是同步的 前一个消息发送成功了才可以下一个消息
+乱序消费并发度为 消费者实例数*线程
+
+
+Optimized English Prompt
+Role: You are a senior software engineer and career mentor.
+
+Context: I am a software engineer at an internet company's ad-tech department. My experience is heavily concentrated in specific areas, and I need to bridge a skills gap.
+
+My Profile:
+
+Primary Responsibilities:
+Developing data collection stream systems for user data (Tech: Go, Gin, MQ, Redis).
+Building and maintaining offline data analysis pipelines (Tech: Hive, Spark).
+Identified Skill Gap: I have limited hands-on experience(only half years) in traditional backend application development, specifically with:
+Advanced MySQL topics (performance tuning, binlog processing).
+Complex Message Queue patterns (e.g., transactional messages, ordered messages).
+Building and scaling stateful, database-centric services.
+Constraint: I cannot switch roles internally in the short term.
+My Goal: I need to find a way to gain practical, production-level experience in these traditional backend areas outside of my current job.
+
+Request: Please suggest actionable strategies or specific project ideas that meet all of the following criteria:
+
+Topic-Focused: Allows me to concentrate on a single topic (like MySQL tuning or transactional messaging) for a period of time.
+Production-Grade: The code must be developed to a professional standard, be deployable, and be usable in a real environment.
+Observable & Tunable: The project must be able to handle real or simulated load, allowing me to practice monitoring, observability, and performance tuning.
+Collaborative or User-Facing: The project should either have real users (even a small number) or provide an opportunity to collaborate with others (e.g., an open-source project).
+Portfolio-Worthy: The results and learning process must be something I can effectively showcase on my GitHub profile.
+
+Note:
+I don't need a specific learning path or material, what I need is practical experience and opportunities to showcase myself, what are the ways?

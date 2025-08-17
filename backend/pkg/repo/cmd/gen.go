@@ -10,8 +10,9 @@ import (
 
 func main() {
 	g := gen.NewGenerator(gen.Config{
-		OutPath: "../model/query",
-		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
+		OutPath:        "../model/query",
+		Mode:           gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
+		FieldCoverable: true,                                                               // generate pointer type for zero value type
 	})
 
 	gormdb, _ := gorm.Open(mysql.Open(config.DSN))

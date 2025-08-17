@@ -1,0 +1,34 @@
+稳定性
+
+- Abase Mysql Redis
+- FooKV FooGraph FooTable NDB
+- ES
+
+Mysql/NDB 等存储引擎为 InnoDB(B+ Tree) 对读优化
+FooKV/Abase 存储引擎为 RockDB(LSM) 对写优化好 大量写场景用 Abase
+
+写吞吐和延迟
+
+- Redis Abase
+- FooKV FooGraph Mysql ...
+
+TB 以下级别数据用 Redis/Mysql 足够
+10TB 以上 考虑大规模存储系统 比如 Abase FooGraph FooKV
+
+Abase V.S. FooKV
+一致性: 最终一致 强一致(写之后读一定读到最新数据)
+技术复杂度: 中 高
+读写 QPS: 千万 百万
+读写性能: 高 中
+容量扩展: PB
+
+Abase V.S. Redis
+容量扩展: PB 10TB(单机最大)
+读写: 高 高
+性能: 低 高
+
+多维度查询 ES
+
+消息队列
+RocketMQ 适用于在线场景 基于事务消息可以实现最终一致性
+Kafka 适用于高吞吐的离线场景

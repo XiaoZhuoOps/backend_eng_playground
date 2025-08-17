@@ -17,33 +17,37 @@ import (
 
 var (
 	Q                      = new(Query)
-	TrackerCost            *trackerCost
-	WebTracker             *webTracker
-	WebTrackerUserRelation *webTrackerUserRelation
+	ProductCost            *productCost
+	User                   *user
+	WebProduct             *webProduct
+	WebProductUserRelation *webProductUserRelation
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
-	TrackerCost = &Q.TrackerCost
-	WebTracker = &Q.WebTracker
-	WebTrackerUserRelation = &Q.WebTrackerUserRelation
+	ProductCost = &Q.ProductCost
+	User = &Q.User
+	WebProduct = &Q.WebProduct
+	WebProductUserRelation = &Q.WebProductUserRelation
 }
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                     db,
-		TrackerCost:            newTrackerCost(db, opts...),
-		WebTracker:             newWebTracker(db, opts...),
-		WebTrackerUserRelation: newWebTrackerUserRelation(db, opts...),
+		ProductCost:            newProductCost(db, opts...),
+		User:                   newUser(db, opts...),
+		WebProduct:             newWebProduct(db, opts...),
+		WebProductUserRelation: newWebProductUserRelation(db, opts...),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	TrackerCost            trackerCost
-	WebTracker             webTracker
-	WebTrackerUserRelation webTrackerUserRelation
+	ProductCost            productCost
+	User                   user
+	WebProduct             webProduct
+	WebProductUserRelation webProductUserRelation
 }
 
 func (q *Query) Available() bool { return q.db != nil }
@@ -51,9 +55,10 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                     db,
-		TrackerCost:            q.TrackerCost.clone(db),
-		WebTracker:             q.WebTracker.clone(db),
-		WebTrackerUserRelation: q.WebTrackerUserRelation.clone(db),
+		ProductCost:            q.ProductCost.clone(db),
+		User:                   q.User.clone(db),
+		WebProduct:             q.WebProduct.clone(db),
+		WebProductUserRelation: q.WebProductUserRelation.clone(db),
 	}
 }
 
@@ -68,23 +73,26 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                     db,
-		TrackerCost:            q.TrackerCost.replaceDB(db),
-		WebTracker:             q.WebTracker.replaceDB(db),
-		WebTrackerUserRelation: q.WebTrackerUserRelation.replaceDB(db),
+		ProductCost:            q.ProductCost.replaceDB(db),
+		User:                   q.User.replaceDB(db),
+		WebProduct:             q.WebProduct.replaceDB(db),
+		WebProductUserRelation: q.WebProductUserRelation.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
-	TrackerCost            ITrackerCostDo
-	WebTracker             IWebTrackerDo
-	WebTrackerUserRelation IWebTrackerUserRelationDo
+	ProductCost            IProductCostDo
+	User                   IUserDo
+	WebProduct             IWebProductDo
+	WebProductUserRelation IWebProductUserRelationDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		TrackerCost:            q.TrackerCost.WithContext(ctx),
-		WebTracker:             q.WebTracker.WithContext(ctx),
-		WebTrackerUserRelation: q.WebTrackerUserRelation.WithContext(ctx),
+		ProductCost:            q.ProductCost.WithContext(ctx),
+		User:                   q.User.WithContext(ctx),
+		WebProduct:             q.WebProduct.WithContext(ctx),
+		WebProductUserRelation: q.WebProductUserRelation.WithContext(ctx),
 	}
 }
 

@@ -1,0 +1,21 @@
+{
+    "API_TIMEOUT_MS": 600000,
+    "Providers": [
+        {
+            "name": "openrouter",
+            "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
+            "api_key": "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",
+            "models": [
+                "anthropic/claude-sonnet-4"
+            ],
+            "transformer": {
+                "use": [
+                    "openrouter"
+                ]
+            }
+        }
+    ],
+    "Router": {
+        "default": "openrouter"
+    }
+}

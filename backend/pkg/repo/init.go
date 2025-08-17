@@ -16,7 +16,7 @@ func Init() {
 	DB, err = gorm.Open(mysql.Open(config.DSN), &gorm.Config{
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
-		Logger:                 logger.Default.LogMode(logger.Info), // 这里会显示实际的SQL
+		Logger:                 logger.Default.LogMode(logger.Info), // 打印实际的SQL
 	})
 	if err != nil {
 		panic(err)
